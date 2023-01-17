@@ -5,6 +5,10 @@ import {MenuItem} from "@mui/material";
 import React, { useState } from "react";
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import CheckIcon from '@mui/icons-material/Check';
+import { update } from "../BookAPI";
+
+
+
 const Book = ({book,setBooks,allBooks,forceUpdate})=>{
     
     const [shelf,setShelf] = useState(book.shelf);
@@ -12,14 +16,23 @@ const Book = ({book,setBooks,allBooks,forceUpdate})=>{
     
 
     const [anchorEl,setAnchorEl] = useState(null)
-    const handleClose = (newShelf)=>{
-        const index = allBooks.indexOf(book);
-        setShelf(newShelf);
-        allBooks[index].shelf = newShelf;
-        setBooks(allBooks)
-        forceUpdate();
+    const handleClose = (e,newShelf)=>{
+        if(['currentlyReading','wantToRead','read','none'].includes(newShelf)){
+                if(window.location.pathname === '/search'){
+                    setShelf(newShelf);
+                    update(book,newShelf);
+                }else{
+                    setShelf(newShelf);
+                    update(book,newShelf);
+                    const index = allBooks.indexOf(book);
+                    allBooks[index].shelf = newShelf;
+                    setBooks(allBooks)
+                    forceUpdate();
+
+                }
+                
+        }
         setAnchorEl(null);
-        console.log(allBooks);
     }
 
     const handleMenu = (event) =>{
@@ -43,10 +56,10 @@ const Book = ({book,setBooks,allBooks,forceUpdate})=>{
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-                <MenuItem onClick={()=>handleClose('currentlyReading')}>{(shelf === 'currentlyReading')? <CheckIcon fontSize="small"/> : ""}Currently Reading</MenuItem>
-                <MenuItem onClick={()=>handleClose('wantToRead')}>{(shelf === 'wantToRead')? <CheckIcon fontSize="small"/> : ""}Want To Read</MenuItem>
-                <MenuItem onClick={()=>handleClose('read')}>{(shelf === 'read')? <CheckIcon fontSize="small"/> : ""}Read</MenuItem>
-                <MenuItem onClick={()=>handleClose('none')}>{(shelf === 'none')? <CheckIcon fontSize="small"/> : ""}None</MenuItem>
+                <MenuItem onClick={(e)=>handleClose(e,'currentlyReading')}>{(shelf === 'currentlyReading')? <CheckIcon fontSize="small"/> : ""}Currently Reading</MenuItem>
+                <MenuItem onClick={(e)=>handleClose(e,'wantToRead')}>{(shelf === 'wantToRead')? <CheckIcon fontSize="small"/> : ""}Want To Read</MenuItem>
+                <MenuItem onClick={(e)=>handleClose(e,'read')}>{(shelf === 'read')? <CheckIcon fontSize="small"/> : ""}Read</MenuItem>
+                <MenuItem onClick={(e)=>handleClose(e,'none')}>{(shelf === undefined ^ shelf === 'none')? <CheckIcon fontSize="small"/> : ""}None</MenuItem>
                 </Menu>
         </div>
     );
