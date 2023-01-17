@@ -15,7 +15,7 @@ const BookShelf = ({title,books,setBooks,allBooks,forceUpdate})=>{
             <hr></hr>
             <Grid container align="center" alignContent={"end"} justifyContent={"center"} spacing={2}>
             {books.map((book)=>(
-                <Grid item xs={2} key={book.id}><Book book={book} setBooks={setBooks} allBooks={allBooks} forceUpdate={forceUpdate}/></Grid>
+                <Grid item xs={12} sm={6} md={4} lg={2} key={book.id}><Book book={book} setBooks={setBooks} allBooks={allBooks} forceUpdate={forceUpdate}/></Grid>
             ))}
             </Grid>
         </Container>

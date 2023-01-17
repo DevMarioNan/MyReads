@@ -39,8 +39,8 @@ const Book = ({book,setBooks,allBooks,forceUpdate})=>{
         setAnchorEl(event.currentTarget);
     }
     return(
-        <div style={{display: "flex",flexDirection:"column",justifyContent:"center" ,alignContent:"center"}}>
-            <div style={{flex:0,width:200,position:"relative"}}>
+        <div style={{display: "flex",flexDirection:"column",justifyContent:"center" ,alignContent:"center"} }>
+            <div style={{flex:0,width:200,position:"relative",width:"80%"}}>
                 <img style={{width:"100%"}} src={book.imageLinks.thumbnail}/>
 
                 <IconButton id={book.id} style={{position:"absolute",right:-20,bottom:-5,color:"green",backgroundColor:"white"}} onClick={handleMenu} >

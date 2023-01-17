@@ -43,14 +43,15 @@ const SearchPage = () => {
             </Link>
             <TextField id="outlined-basic" label="Outlined" variant="outlined" sx={{width:"95vw",border:"none",top:3}} onChange={(e)=>handleSearch(e)} />
         </Box>
-        
-            <Grid container spacing="2" sx={{mt:2}}>
+            
+            <Grid container spacing={2}  sx={{mt:2,width:"90%",m:"0 auto"}} >
                 {result.map((book)=>(
-                    <Grid item xs={2} key={book.id}>
+                    <Grid item lg={2} md={3} sm={6} xs={12}  key={book.id}>
                         <Book book={book} ></Book>
                     </Grid>
                 ))}
             </Grid>
+            
     </Box>
     );
 }
