@@ -46,7 +46,7 @@ const Book = ({book,setBooks,allBooks,forceUpdate})=>{
                 </IconButton>
             </div>
             <Typography variant="p" color={"black"} align={"left"}>{book.title}</Typography>
-            <Typography variant="p" color={"gray"} align={"left"}>{book.authors}</Typography>
+            <Typography variant="p" color={"gray"} align={"left"}>{book.authors.join(' , ')}</Typography>
             <Menu 
             id={book.id}
             anchorEl={anchorEl}
