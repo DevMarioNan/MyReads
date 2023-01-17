@@ -10,7 +10,7 @@ the books are implemented using the EGYFWD API
 ## some pics
 
 ![alt text](https://i.ibb.co/sHHx2m5/image-2023-01-17-185754553.png)
-![alt text](https://i.ibb.co/J7CpScS/image-2023-01-17-185917578.png)
+![alt text](https://i.ibb.co/9TG4dpd/image-2023-01-17-185917578.png)
 
 ## locale run
 
