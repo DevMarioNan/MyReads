@@ -13,8 +13,6 @@ const Book = ({book,setBooks,allBooks,forceUpdate})=>{
     
     const [shelf,setShelf] = useState(book.shelf);
 
-    
-
     const [anchorEl,setAnchorEl] = useState(null)
     const handleClose = (e,newShelf)=>{
         if(['currentlyReading','wantToRead','read','none'].includes(newShelf)){
@@ -30,8 +28,8 @@ const Book = ({book,setBooks,allBooks,forceUpdate})=>{
                     forceUpdate();
 
                 }
-                
-        }
+            }
+            
         setAnchorEl(null);
     }
 

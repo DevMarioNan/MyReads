@@ -18,19 +18,18 @@ const SearchPage = () => {
         setQuery(e.target.value); 
         if(query !== ''){
             search(query)
-            .then(  (data)=>  {
+            .then((data)=>  {
                 if(data.error){
                     setResult([]);
                 }else{
-                    setResult(data);
+                    setResult(data.filter((book)=> book.hasOwnProperty("imageLinks")));
+                    
                     }
                 }    
             )
-            
         }else{
             setResult([])
         }
-
     }
 
     return ( 
@@ -46,6 +45,7 @@ const SearchPage = () => {
             
             <Grid container spacing={2}  sx={{mt:2,width:"90%",m:"0 auto"}} >
                 {result.map((book)=>(
+                    
                     <Grid item lg={2} md={3} sm={6} xs={12}  key={book.id}>
                         <Book book={book} ></Book>
                     </Grid>
