@@ -5,15 +5,21 @@ import {MenuItem} from "@mui/material";
 import React, { useState } from "react";
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import CheckIcon from '@mui/icons-material/Check';
-const Book = ({book})=>{
+const Book = ({book,setBooks,allBooks,forceUpdate})=>{
     
     const [shelf,setShelf] = useState(book.shelf);
 
     
 
     const [anchorEl,setAnchorEl] = useState(null)
-    const handleClose = (e)=>{
-        setAnchorEl(null)
+    const handleClose = (newShelf)=>{
+        const index = allBooks.indexOf(book);
+        setShelf(newShelf);
+        allBooks[index].shelf = newShelf;
+        setBooks(allBooks)
+        forceUpdate();
+        setAnchorEl(null);
+        console.log(allBooks);
     }
 
     const handleMenu = (event) =>{
@@ -37,10 +43,10 @@ const Book = ({book})=>{
             open={Boolean(anchorEl)}
             onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>{(shelf === 'currentlyReading')? <CheckIcon fontSize="small"/> : ""}Currently Reading</MenuItem>
-                <MenuItem onClick={handleClose}>{(shelf === 'wantToRead')? <CheckIcon fontSize="small"/> : ""}Want To Read</MenuItem>
-                <MenuItem onClick={handleClose}>{(shelf === 'read')? <CheckIcon fontSize="small"/> : ""}Read</MenuItem>
-                <MenuItem onClick={handleClose}>{(shelf === 'none')? <CheckIcon fontSize="small"/> : ""}None</MenuItem>
+                <MenuItem onClick={()=>handleClose('currentlyReading')}>{(shelf === 'currentlyReading')? <CheckIcon fontSize="small"/> : ""}Currently Reading</MenuItem>
+                <MenuItem onClick={()=>handleClose('wantToRead')}>{(shelf === 'wantToRead')? <CheckIcon fontSize="small"/> : ""}Want To Read</MenuItem>
+                <MenuItem onClick={()=>handleClose('read')}>{(shelf === 'read')? <CheckIcon fontSize="small"/> : ""}Read</MenuItem>
+                <MenuItem onClick={()=>handleClose('none')}>{(shelf === 'none')? <CheckIcon fontSize="small"/> : ""}None</MenuItem>
                 </Menu>
         </div>
     );
